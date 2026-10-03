@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+html, body { font-family: "Cairo", "Tajawal", system-ui, sans-serif; }
+body { background: #f3f6fa; color: #16222f; }
+
+@layer components {
+  .field { @apply w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-[15px] outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/20; }
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 text-[15px] font-bold transition disabled:opacity-50; }
+  .btn-primary { @apply btn bg-navy text-white hover:bg-brand; }
+  .btn-ghost { @apply btn border border-slate-300 bg-white text-slate-700 hover:bg-slate-50; }
+  .btn-danger { @apply btn border border-red-200 bg-white text-red-700 hover:bg-red-50; }
+  .card { @apply rounded-xl border border-slate-200 bg-white p-5; }
+}
+
+/* ===== الطباعة: صفحة مخصصة 210 × 315 مم تطابق القالب ===== */
+@page { size: 210mm 315mm; margin: 0; }
+.sheet { width: 210mm; height: 315mm; position: relative; overflow: hidden; background: #fff; }
+.sheet-inner { position: absolute; top: 0; right: 0; width: 1024px; height: 1536px;
+  transform: scale(0.77509); transform-origin: top right; }
+@media print {
+  html, body { background: #fff !important; }
+  .no-print { display: none !important; }
+  .sheet { margin: 0 !important; box-shadow: none !important; }
+}
